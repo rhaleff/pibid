@@ -1,10 +1,10 @@
 package poo.maven.projeto.pibid;
 public class Material {
-	
+
 	private String nome;
 	private String codMaterial;
 	private int quantidade;
-	
+
 	public Material (String nome, String codMaterial, int quantidade){
 		this.nome=nome;
 		this.codMaterial=codMaterial;
@@ -34,7 +34,7 @@ public class Material {
 	public void setQuantidade(int quantidade) {
 		this.quantidade = quantidade;
 	}
-	
-	
+
+
 
 }

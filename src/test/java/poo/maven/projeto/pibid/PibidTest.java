@@ -330,4 +330,42 @@ public class PibidTest {
 		pibid.cadastrarEscola(e);
 		assertEquals(e,pibid.pesquisarEscolaPeloCod("01235"));
 	}	
+	
+	@Test
+	public void cadastrarMaterialTest(){
+		Material m = new Material ("Canetas","0112",10);
+		pibid.cadastrarMaterial(m);
+		List <Material> list = pibid.getListaDeMateriais();
+		assertEquals(1,list.size());
+		assertEquals(m, list.get(0));
+	}
+
+	@Test
+	public void removerMaterialTest(){
+		Material m = new Material ("Canetas","0112",10);
+		pibid.cadastrarMaterial(m);
+		pibid.removerMaterial("0112");
+		List <Material> list = pibid.getListaDeMateriais();
+		assertEquals(0,list.size());
+	}
+
+	@Test(expected = MaterialInexistenteException.class)
+	public void removerMaterialInexistenteTest(){
+		pibid.removerMaterial("0123");
+	}
+
+	@Test
+	public void pesquisarMaterialTest(){
+		Material m = new Material ("Borrachas","0012",11);
+		pibid.cadastrarMaterial(m);
+		Material retorno = pibid.pesquisarMaterial("0012");
+		assertEquals(m,retorno);
+	}
+
+	@Test(expected = MaterialInexistenteException.class)
+	public void pesquisarMaterialInexistenteTest(){
+		Material m = new Material ("Cadernos","1212",1);
+		pibid.cadastrarMaterial(m);
+		pibid.pesquisarMaterial("0102");
+	}
 }

@@ -7,12 +7,14 @@ public class Pibid {
 	private GerenciadorDeEscola gerenciadorEscola;
 	private GerenciadorDeGrupo gerenciadorGrupo;
 	private GerenciadorDeTerefas gerenciadorTarefas;
+	private GerenciadorDeMaterial gerenciadorMaterial;
 	
 	public Pibid(){
 		this.gerenciador= new GerenciadorPibid();
 		this.gerenciadorEscola= new GerenciadorDeEscola(); 
 		this.gerenciadorGrupo= new GerenciadorDeGrupo();
 		this.gerenciadorTarefas= new GerenciadorDeTerefas();
+		this.gerenciadorMaterial = new GerenciadorDeMaterial();
 	}
 	
 	//PARTE DE CADASTROS
@@ -39,6 +41,10 @@ public class Pibid {
 	
 	public void cadastrarEscola(Escola e){
 		this.gerenciadorEscola.cadastrarEscola(e);
+	}
+	
+	public void cadastrarMaterial(Material m){
+		this.gerenciadorMaterial.cadastrarMaterial(m);
 	}
 
 	//PARTE DE ADICIONAR
@@ -70,9 +76,22 @@ public class Pibid {
 	public List<Escola> getEscola (){
 		return this.gerenciadorEscola.getEscolas();
 	}
+	
+	public List <Material> getListaDeMateriais (){
+		return this.gerenciadorMaterial.getListaDeMateriais();
+	}
+
+	public Material getMaterial (String codigo){
+		return this.gerenciadorMaterial.getMaterial(codigo);
+	}
+	
 	// PARTE DE PESQUISAS
 	public Grupo pesquisarGrupo(String codigo){
 		return this.gerenciadorGrupo.pesquisarGrupo(codigo);
+	}
+	
+	public Material pesquisarMaterial (String codMaterial){
+		return this.gerenciadorMaterial.pesquisarMaterial(codMaterial);
 	}
 	
 	public Aluno pesquisaAluno(String matricula){
@@ -103,9 +122,13 @@ public class Pibid {
 		return this.gerenciadorEscola.pesquisarEscolaPeloCod(cod);
 	}
 
-	// PARTE DE REMO��ES
+	// PARTE DE REMOÇÕES
 	public void removerAlunoPelaMatricula(String matricula){
 		this.gerenciador.removerAlunoPelaMatricula(matricula);
+	}
+	
+	public void removerMaterial(String codMaterial){
+		this.gerenciadorMaterial.removerMaterial(codMaterial);
 	}
 	
 	public void removerCoordenadorPeloSiape(String siape){

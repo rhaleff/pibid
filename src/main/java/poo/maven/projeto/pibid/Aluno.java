@@ -8,13 +8,6 @@ public class Aluno{
 		pessoa.setMatricula(matricula);
 	}
 	
-	public String getDescricao(){
-		return "Nome: "+pessoa.getNome()+" | Matr�cula: "+pessoa.getMatricula();
-	}
-	public String toString(){
-		return getDescricao();
-	}
-
 	public String getMatricula() {
 		return pessoa.getMatricula();
 	}

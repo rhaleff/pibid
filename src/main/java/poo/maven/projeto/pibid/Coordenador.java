@@ -7,12 +7,6 @@ public class Coordenador{
 		pessoa.setNome(nome);
 		pessoa.setMatricula(siape);
 	}
-	public String getDescricao(){
-		return "Nome: "+pessoa.getNome()+" | SIAPE: "+pessoa.getMatricula();
-	}
-	public String toString(){
-		return getDescricao();
-	}
 	public String getMatricula() {
 		return pessoa.getMatricula();
 	}
