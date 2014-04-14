@@ -25,17 +25,13 @@ public class GerenciadorDeTerefas {
 	}
 	
 	public void removerTarefa(String cod) {
-		boolean removeu = false;
 		for(Tarefa t : this.tarefas){
 			if(t.getcodDaTarefa().equals(cod)){
 				this.tarefas.remove(t);
-				removeu = true;
-				break;
+				return;
 			}
 		}
-		if(!removeu){
-			throw new RuntimeException("ERRO!");
-		}
+		throw new RuntimeException("ERRO!");
 		
 	}
 	public void removerTarefaDoGrupo(Tarefa t, Grupo g){

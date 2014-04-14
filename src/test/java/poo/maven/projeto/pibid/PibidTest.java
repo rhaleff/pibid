@@ -179,7 +179,7 @@ public class PibidTest {
 	@Test
 	public void verificarTamanhoDaListadeCoordenadoresTest(){
 		Coordenador coord = new Coordenador("Ana Liz","12345678");
-		Coordenador coord2 = new Coordenador("Fl�via veloso","781454653");
+		Coordenador coord2 = new Coordenador("Flávia veloso","781454653");
 		Coordenador coord3 = new Coordenador("Ana Cristina","099877533");
 		Coordenador coord4 = new Coordenador("Maria Helena","85423923791");
 		pibid.cadastraCoordenador(coord);

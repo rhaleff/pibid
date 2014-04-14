@@ -11,33 +11,22 @@ public class GerenciadorDeEscola {
 	}
 	
 	public void cadastrarEscola(Escola escola) {
-		boolean existe=false;
 		for (Escola e: this.escolas){
 			if(e.getCodDoMec().equals(escola.getCodDoMec())){
-				existe=true;
-				break;
+				throw new EscolaExistenteException ("Escola Existente!");
 			}
 		}
-		if(existe==false){
-			this.escolas.add(escola);
-		}
-		else{
-			throw new EscolaExistenteException ("Escola Existente!");
-		}
+		this.escolas.add(escola);
 	}
 	
 	public void removerEscolaPeloCod(String cod){
-		boolean removeu=false;
 		for (Escola e: this.escolas){
 			if(e.getCodDoMec().equals(cod)){
-				removeu=true;
 				escolas.remove(e);
-				break;
+				return ;
 			}
 		}
-		if(removeu==false){
-			throw new EscolaInexistenteException ("Escola Inexistente!");
-		}
+		throw new EscolaInexistenteException ("Escola Inexistente!");
 	}
 	
 	public Escola pesquisarEscolaPeloNome(String nome){

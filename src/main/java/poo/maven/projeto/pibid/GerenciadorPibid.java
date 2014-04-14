@@ -9,35 +9,21 @@ public class GerenciadorPibid{
 	
 	//PARTE DE CADASTRO
 	public void cadastraAluno(Aluno aluno){
-		boolean existe=false;
 		for (Aluno a: this.alunos){
 			if(a.getMatricula().equals(aluno.getMatricula())){
-				existe=true;
-				break;
+				throw new AlunoExistenteException("Aluno Existente!");
 			}
 		}
-		if(existe==false){
-			this.alunos.add(aluno);
-		}
-		else{
-			throw new AlunoExistenteException("Aluno Existente!");
-		}
+		this.alunos.add(aluno);
 	}
 	
 	public void cadastraCoordenador(Coordenador coo1) {
-		boolean existe=false;
 		for (Coordenador c: this.coordenadores){
 			if(c.getMatricula().equals(coo1.getMatricula())){
-				existe=true;
-				break;
+				throw new CoordenadorExistenteException("Coordenador Existente!");
 			}
 		}
-		if(existe==false){
-			this.coordenadores.add(coo1);
-		}
-		else{
-			throw new CoordenadorExistenteException("Coordenador Existente!");
-		}
+		this.coordenadores.add(coo1);
 	}
 	
 	public void cadastrarParticipante(Aluno a,Grupo g) {
@@ -108,38 +94,24 @@ public class GerenciadorPibid{
     	
 	//PARTE DE REMO��O
 	public void removerAlunoPelaMatricula(String matricula) {
-		
-		boolean removeu = false;
-		
+	
 		for (Aluno x: this.alunos){
-			
 			if (x.getMatricula().equals(matricula)){
-				removeu = true;
 				this.alunos.remove(x);
-				break;
+				return;
 			}
-			
-			
 		}
-		if(removeu ==false){
-			throw new AlunoInexistenteException("Imposs�vel remover, pois n�o existe!");
-		}
-			
+		throw new AlunoInexistenteException("Impossível remover, pois não existe!");		
 	}
 	
 	public void removerCoordenadorPeloSiape(String siape){
-		boolean removeu = false;
 		
 		for (Coordenador c: this.coordenadores){
-			
 			if(c.getMatricula().equals(siape)){
-				removeu = true;
-				this.coordenadores.remove(c);
-				break;
+			 	this.coordenadores.remove(c);
+				return;
 			}
 		}
-		if(removeu == false){
-			throw new CoordenadorInexistenteException("Imposs�vel remover, pois não existe!");
-		}
+		throw new CoordenadorInexistenteException("Impossível remover, pois não existe!");
 	}		
 }

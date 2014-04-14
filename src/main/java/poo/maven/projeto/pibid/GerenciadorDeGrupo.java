@@ -6,20 +6,13 @@ public class GerenciadorDeGrupo {
 
 	private List<Grupo> grupos= new LinkedList<Grupo>();
 	
-	public void cadastrarGrupo(Grupo grupo){
-		boolean existe = false;
-		
+	public void cadastrarGrupo(Grupo grupo){		
 		for(Grupo g: this.grupos){
 			if(g.getCodigoGrupo().equals(grupo.getCodigoGrupo())){
-				existe = true;
+				throw new GrupoJaexisteException("O grupo já existe,por favor ultilize outro código de identificação!");
 			}
 		}
-		if(!existe){
-			this.grupos.add(grupo);
-		}
-		else{
-			throw new GrupoJaexisteException("O grupo já existe,por favor ultilize outro código de identificação!");
-		}
+		this.grupos.add(grupo);
 	}
 	
 	public List<Grupo> getListaDeGrupos(){
