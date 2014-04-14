@@ -139,7 +139,7 @@ public class GerenciadorPibid{
 			}
 		}
 		if(removeu == false){
-			throw new CoordenadorInexistenteException("Imposs�vel remover, pois n�o existe!");
+			throw new CoordenadorInexistenteException("Imposs�vel remover, pois não existe!");
 		}
 	}		
 }

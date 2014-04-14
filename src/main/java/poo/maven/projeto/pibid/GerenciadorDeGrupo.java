@@ -18,7 +18,7 @@ public class GerenciadorDeGrupo {
 			this.grupos.add(grupo);
 		}
 		else{
-			throw new GrupoJaexisteException("O grupo j� existe,por favor ultilize outro c�digo de identifica��o!");
+			throw new GrupoJaexisteException("O grupo já existe,por favor ultilize outro código de identificação!");
 		}
 	}
 	
@@ -32,7 +32,7 @@ public class GerenciadorDeGrupo {
 				return i;
 			}
 		}
-		return null;
+		throw new GrupoJaexisteException("O grupo já existe,por favor ultilize outro código de identificação!");
 	}
 	
 	public void removerTarefaDoGrupo(String codTarefa, String codGrupo){

@@ -115,13 +115,6 @@ public class PibidTest {
 		assertEquals(a,pibid.pesquisaAluno("81211067"));	
 	}
 	
-	@Test
-	public void pesquisaAlunoPeloNomeTest(){
-		Aluno a = new Aluno("Luana","81211067");
-		pibid.cadastrarAluno(a);
-		assertEquals(a,pibid.pesquisarAlunoPeloNome("Luana"));
-	}
-	
 	@Test(expected = AlunoInexistenteException.class)
 	public void pesquisarAlunoInexistenteTest(){
 		Aluno a = new Aluno("Rhaleff","81211133");
@@ -129,12 +122,12 @@ public class PibidTest {
 		pibid.pesquisaAluno("1312312");
 	}
 	
-	@Test
+	@Test(expected = GrupoJaexisteException.class)
 	public void pesquisarGrupoInexistenteTest(){
 		Tarefa t = new Tarefa("Ministrar curso de HTML","456");
 		Grupo g = new Grupo(t,"123");
 		pibid.cadastrarGrupo(g);
-		assertNull(pibid.pesquisarGrupo("321"));
+		pibid.pesquisarGrupo("321");
 	}
 	
 	@Test
@@ -279,6 +272,10 @@ public class PibidTest {
 		pibid.removerAlunoPelaMatricula(a3.getMatricula());
 		List<Aluno> listaAlunos = pibid.getListaDeAlunosCriados();
 		assertEquals(4,listaAlunos.size());
+		assertEquals(a,listaAlunos.get(0));
+		assertEquals(a2, listaAlunos.get(1));
+		assertEquals(a4, listaAlunos.get(2));
+		assertEquals(a6, listaAlunos.get(3));
 	}
 	
 	@Test(expected = AlunoInexistenteException.class)
@@ -301,98 +298,7 @@ public class PibidTest {
 	}
 	
 	
-	@Test
-	public void cadastrarMaterialTest(){
-		Material m = new Material ("Canetas","0112",10);
-		pibid.cadastrarMaterial(m);
-		List <Material> list = pibid.getListaDeMateriais();
-		assertEquals(1,list.size());
-		assertEquals(m, list.get(0));
-	}
-	
-	@Test
-	public void removerMaterialTest(){
-		Material m = new Material ("Canetas","0112",10);
-		pibid.cadastrarMaterial(m);
-		pibid.removerMaterial("0112");
-		List <Material> list = pibid.getListaDeMateriais();
-		assertEquals(0,list.size());
-	}
-	
-	@Test(expected = MaterialInexistenteException.class)
-	public void removerMaterialInexistenteTest(){
-		pibid.removerMaterial("0123");
-	}
-	
-	@Test
-	public void pesquisarMaterialTest(){
-		Material m = new Material ("Borrachas","0012",11);
-		pibid.cadastrarMaterial(m);
-		Material retorno = pibid.pesquisarMaterial("0012");
-		assertEquals(m,retorno);
-	}
-	
-	@Test(expected = MaterialInexistenteException.class)
-	public void pesquisarMaterialInexistenteTest(){
-		Material m = new Material ("Cadernos","1212",1);
-		pibid.cadastrarMaterial(m);
-		pibid.pesquisarMaterial("0102");
-	}
-	
-	@Test
-	public void adicionarQuantidadeDeMaterialTest(){
-		Material m = new Material ("Canetas","0112",1);
-		pibid.cadastrarMaterial(m);
-		pibid.adicionarQuantidadeDeMaterial("0112",1);
-		assertEquals(2, pibid.getMaterial("0112").getQuantidade());
-	}
-	
-	@Test(expected = QuantidadeNegativaException.class)
-	public void removerQuantidadeDeMaterialTest(){
-		Material m = new Material ("Lápis","0213",8);
-		pibid.cadastrarMaterial(m);
-		pibid.removerQuantidadeDeMaterial("0213",10);
-	}
-	
-	@Test(expected = QuantidadeNegativaException.class)
-	public void adicionarQuantidadeNegativaDeMaterialTest(){
-		Material m = new Material ("Folhas","1459",10);
-		pibid.cadastrarMaterial(m);
-		pibid.adicionarQuantidadeDeMaterial("1459",-1);
-	}
-	
-	@Test(expected = QuantidadeNegativaException.class)
-	public void removerQuantidadeNegativaDeMaterialTest(){
-		Material m = new Material ("Folhas","1459",10);
-		pibid.cadastrarMaterial(m);
-		pibid.adicionarQuantidadeDeMaterial("1459",-1);
-	}
-	
-	
-	@Test
-	public void pesquisarMaterialPeloNomeTest(){
-		Material m= new Material("Caneta","0012",5);
-		pibid.cadastrarMaterial(m);
-		Material retorno=pibid.pesquisarMaterialPeloNome("Caneta");
-		assertEquals(m,retorno);
-	}
-	
-	@Test
-	public void pesquisarMateriaisEmFaltaTest(){
-		Material m1= new Material("Caneta","0012",5);
-		Material m2= new Material("Borracha","0013",4);
-		Material m3= new Material("Cartolina","0014",8);
-		Material m4= new Material("Lápis","0015",2);
-		pibid.cadastrarMaterial(m1);
-		pibid.cadastrarMaterial(m2);
-		pibid.cadastrarMaterial(m3);
-		pibid.cadastrarMaterial(m4);
-		pibid.removerQuantidadeDeMaterial("0012", 5);
-		pibid.removerQuantidadeDeMaterial("0013", 4);
-		List<Material> retorno=pibid.pesquisarMaterialEmFalta();
-		assertEquals(2,retorno.size());
-	}
-	
+
 	@Test
 	public void cadatraEscolaTest(){
 		Escola e= new Escola("E.E.E.F.M. Luis Gonzaga Burity","Rio Tinto","01235");

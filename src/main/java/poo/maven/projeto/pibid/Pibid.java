@@ -4,14 +4,12 @@ import java.util.List;
 public class Pibid {
 	
 	private GerenciadorPibid gerenciador;
-	private GerenciadorDeMaterial gerenciadorMaterial;
 	private GerenciadorDeEscola gerenciadorEscola;
 	private GerenciadorDeGrupo gerenciadorGrupo;
 	private GerenciadorDeTerefas gerenciadorTarefas;
 	
 	public Pibid(){
 		this.gerenciador= new GerenciadorPibid();
-		this.gerenciadorMaterial = new GerenciadorDeMaterial();
 		this.gerenciadorEscola= new GerenciadorDeEscola(); 
 		this.gerenciadorGrupo= new GerenciadorDeGrupo();
 		this.gerenciadorTarefas= new GerenciadorDeTerefas();
@@ -39,21 +37,13 @@ public class Pibid {
 		
 	}
 	
-	public void cadastrarMaterial(Material m){
-		this.gerenciadorMaterial.cadastrarMaterial(m);
-	}
-	
-	public void cadastrarEscola(Escola e) throws EscolaExistenteException{
+	public void cadastrarEscola(Escola e){
 		this.gerenciadorEscola.cadastrarEscola(e);
 	}
 
 	//PARTE DE ADICIONAR
 	public void adicionarTarefaAoGrupo(Tarefa t, Grupo g){
 		this.gerenciador.adicionarTarefaAoGrupo(t, g);
-	}
-	
-	public void adicionarQuantidadeDeMaterial(String codigo, int quantidade){
-		this.gerenciadorMaterial.adicionarQuantidadeDeMaterial(codigo, quantidade);
 	}
 	
 	// PARTE DE GETS
@@ -77,13 +67,6 @@ public class Pibid {
 		return this.gerenciador.getListaDeTarefasCadastradasEmUmGrupo(g);
 	}
 	
-	public List <Material> getListaDeMateriais (){
-		return this.gerenciadorMaterial.getListaDeMateriais();
-	}
-	
-	public Material getMaterial (String codigo){
-		return this.gerenciadorMaterial.getMaterial(codigo);
-	}
 	public List<Escola> getEscola (){
 		return this.gerenciadorEscola.getEscolas();
 	}
@@ -112,18 +95,6 @@ public class Pibid {
 		return this.gerenciadorTarefas.pesquisarTarefa(codTarefa);
 	}
 	
-	public Material pesquisarMaterial (String codMaterial){
-		return this.gerenciadorMaterial.pesquisarMaterial(codMaterial);
-	}
-	
-	public Material pesquisarMaterialPeloNome (String n){
-		return this.gerenciadorMaterial.pesquisarMaterialPeloNome(n);
-	}
-	
-	public List<Material> pesquisarMaterialEmFalta(){
-		return this.gerenciadorMaterial.pesquisarMaterialEmFalta();
-	}
-	
 	public Escola pesquisarEscolaPeloNome (String n){
 		return this.gerenciadorEscola.pesquisarEscolaPeloNome(n);
 	}
@@ -146,14 +117,7 @@ public class Pibid {
 	public void removerTarefaDoGrupo(Tarefa t, Grupo g){
 		this.gerenciadorTarefas.removerTarefaDoGrupo(t,g);
 	}
-	
-	public void removerMaterial(String codMaterial){
-		this.gerenciadorMaterial.removerMaterial(codMaterial);
-	}
-	
-	public void removerQuantidadeDeMaterial (String codigo, int quant){
-		this.gerenciadorMaterial.removerQuantidadeDeMaterial(codigo, quant);
-	} 
+	 
 	public void removerEscolaPeloCod (String cod){
 		this.gerenciadorEscola.removerEscolaPeloCod(cod);
 	}
