@@ -18,6 +18,7 @@ public class PibidTest {
 		pibid.cadastraCoordenador(coord);
 		List <Coordenador> list = pibid.getListaDeCoordenadoresCriados();
 		assertEquals(1,list.size());
+		assertEquals(coord, list.get(0));
 	}
 	
 	@Test(expected = CoordenadorExistenteException.class)
@@ -27,17 +28,7 @@ public class PibidTest {
 		pibid.cadastraCoordenador(coord);
 		pibid.cadastraCoordenador(coord2);
 	}
-	
-	@Test(expected = CoordenadorExistenteException.class)
-	public void cadastrarCoordenadoresComMesmoSiapeTest(){
-		Coordenador coord = new Coordenador("Ana Liz","12345678");
-		Coordenador coord2 = new Coordenador("Flavia Veloso","12345678");
-		Coordenador coord3 = new Coordenador("Ana Cristina","12345678");
-		pibid.cadastraCoordenador(coord);
-		pibid.cadastraCoordenador(coord2);
-		pibid.cadastraCoordenador(coord3);
-	}
-	
+		
 	@Test
 	public void cadastraAlunoTest(){
 		Aluno aluno= new Aluno("Luana Costa","81211021");
@@ -72,21 +63,6 @@ public class PibidTest {
 		List<Tarefa> lista=pibid.getListaDeTarefas();
 		assertEquals(1,lista.size());
 		assertEquals(tarefa,lista.get(0));
-	}
-	
-	@Test 
-	public void cadastrarAlunosEmGrupoTest(){
-		Tarefa t = new Tarefa("Ministrar curso de Scratch","987");
-		Grupo g = new Grupo(t,"123");
-		pibid.cadastrarGrupo(g);
-		Aluno a = new Aluno("Deyvison","12234576");
-		Aluno a1 = new Aluno("Tayna","53344545");
-		pibid.cadastrarParticipante(a,g);
-		pibid.cadastrarParticipante(a1,g);
-		List<Aluno> participantes = g.listParticipantes();
-		assertEquals(2, participantes.size());
-		assertEquals(a, participantes.get(0));
-		assertEquals(a1, participantes.get(1));	
 	}
 	
 	@Test(expected = Exception.class)
@@ -331,6 +307,7 @@ public class PibidTest {
 		pibid.cadastrarMaterial(m);
 		List <Material> list = pibid.getListaDeMateriais();
 		assertEquals(1,list.size());
+		assertEquals(m, list.get(0));
 	}
 	
 	@Test
@@ -372,7 +349,7 @@ public class PibidTest {
 	
 	@Test(expected = QuantidadeNegativaException.class)
 	public void removerQuantidadeDeMaterialTest(){
-		Material m = new Material ("L�pis","0213",8);
+		Material m = new Material ("Lápis","0213",8);
 		pibid.cadastrarMaterial(m);
 		pibid.removerQuantidadeDeMaterial("0213",10);
 	}
@@ -391,14 +368,6 @@ public class PibidTest {
 		pibid.adicionarQuantidadeDeMaterial("1459",-1);
 	}
 	
-	@Test
-	public void alterarNomeDeMaterialTest(){
-		Material m= new Material ("Caneta","0012",3);
-		pibid.cadastrarMaterial(m);
-		pibid.alterarNomeDeMaterial(m,"L�pis");
-		List <Material> retorno= pibid.getListaDeMateriais();
-		assertEquals("L�pis",retorno.get(0).getNome());
-	}
 	
 	@Test
 	public void pesquisarMaterialPeloNomeTest(){
@@ -413,7 +382,7 @@ public class PibidTest {
 		Material m1= new Material("Caneta","0012",5);
 		Material m2= new Material("Borracha","0013",4);
 		Material m3= new Material("Cartolina","0014",8);
-		Material m4= new Material("L�pis","0015",2);
+		Material m4= new Material("Lápis","0015",2);
 		pibid.cadastrarMaterial(m1);
 		pibid.cadastrarMaterial(m2);
 		pibid.cadastrarMaterial(m3);
@@ -430,6 +399,7 @@ public class PibidTest {
 		pibid.cadastrarEscola(e);
 		List <Escola> escolas = pibid.getEscola();
 		assertEquals(1,escolas.size());
+		assertEquals(e, escolas.get(0));
 	}
 	
 	@Test

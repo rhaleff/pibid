@@ -6,11 +6,15 @@ public class Pibid {
 	private GerenciadorPibid gerenciador;
 	private GerenciadorDeMaterial gerenciadorMaterial;
 	private GerenciadorDeEscola gerenciadorEscola;
+	private GerenciadorDeGrupo gerenciadorGrupo;
+	private GerenciadorDeTerefas gerenciadorTarefas;
 	
 	public Pibid(){
 		this.gerenciador= new GerenciadorPibid();
 		this.gerenciadorMaterial = new GerenciadorDeMaterial();
 		this.gerenciadorEscola= new GerenciadorDeEscola(); 
+		this.gerenciadorGrupo= new GerenciadorDeGrupo();
+		this.gerenciadorTarefas= new GerenciadorDeTerefas();
 	}
 	
 	//PARTE DE CADASTROS
@@ -22,16 +26,12 @@ public class Pibid {
 		this.gerenciador.cadastraCoordenador(coord);	
 	}
 	
-	public void cadastrarAlunosEmGrupo(){
-		this.gerenciador.cadastrarAlunosEmGrupo();
-	}
-	
 	public void cadastrarTarefa(Tarefa tarefa){
-		this.gerenciador.cadastraTarefa(tarefa);
+		this.gerenciadorTarefas.cadastraTarefa(tarefa);
 	}
 	
 	public void cadastrarGrupo(Grupo grupo) {
-		this.gerenciador.cadastrarGrupo(grupo);
+		this.gerenciadorGrupo.cadastrarGrupo(grupo);
 	}
 	
 	public void cadastrarParticipante(Aluno a,Grupo g) {
@@ -66,11 +66,11 @@ public class Pibid {
 	}
 
 	public List<Tarefa> getListaDeTarefas() {
-		return this.gerenciador.getListaDeTarefas();
+		return this.gerenciadorTarefas.getListaDeTarefas();
 	}
 	
 	public List<Grupo> getListaDeGrupo(){
-		return this.gerenciador.getListaDeGrupos();
+		return this.gerenciadorGrupo.getListaDeGrupos();
 	}
 	
 	public List<Tarefa> getListaDeTarefasCadastradasEmUmGrupo(Grupo g) {
@@ -89,7 +89,7 @@ public class Pibid {
 	}
 	// PARTE DE PESQUISAS
 	public Grupo pesquisarGrupo(String codigo){
-		return this.gerenciador.pesquisarGrupo(codigo);
+		return this.gerenciadorGrupo.pesquisarGrupo(codigo);
 	}
 	
 	public Aluno pesquisaAluno(String matricula){
@@ -109,7 +109,7 @@ public class Pibid {
 	}
 	
 	public Tarefa pesquisarTarefa(String codTarefa){
-		return this.gerenciador.pesquisarTarefa(codTarefa);
+		return this.gerenciadorTarefas.pesquisarTarefa(codTarefa);
 	}
 	
 	public Material pesquisarMaterial (String codMaterial){
@@ -141,10 +141,10 @@ public class Pibid {
 		this.gerenciador.removerCoordenadorPeloSiape(siape);
 	}
 	public void removerTarefa(String cod) {
-		this.gerenciador.removerTarefa(cod);
+		this.gerenciadorTarefas.removerTarefa(cod);
 	}
 	public void removerTarefaDoGrupo(Tarefa t, Grupo g){
-		this.gerenciador.removerTarefaDoGrupo(t,g);
+		this.gerenciadorTarefas.removerTarefaDoGrupo(t,g);
 	}
 	
 	public void removerMaterial(String codMaterial){
@@ -158,10 +158,6 @@ public class Pibid {
 		this.gerenciadorEscola.removerEscolaPeloCod(cod);
 	}
 	
-	// PARTE DE ALTERAR
-	public void alterarNomeDeMaterial (Material m,String n){
-		this.gerenciadorMaterial.alterarNomeDeMaterial(m,n);
-	}
 	
 	
 	

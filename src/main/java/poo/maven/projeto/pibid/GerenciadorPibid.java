@@ -6,8 +6,6 @@ public class GerenciadorPibid{
 	
 	private List<Aluno> alunos=new LinkedList<Aluno>();
 	private List<Coordenador> coordenadores=new LinkedList<Coordenador>();
-	private List<Grupo> grupos= new LinkedList<Grupo>();
-	private List<Tarefa> tarefas= new LinkedList<Tarefa>();
 	
 	//PARTE DE CADASTRO
 	public void cadastraAluno(Aluno aluno){
@@ -47,35 +45,6 @@ public class GerenciadorPibid{
 		
 	}
 	
-	public void cadastrarGrupo(Grupo grupo){
-		boolean existe = false;
-		
-		for(Grupo g: this.grupos){
-			if(g.getCodigoGrupo().equals(grupo.getCodigoGrupo())){
-				existe = true;
-			}
-		}
-		if(!existe){
-			this.grupos.add(grupo);
-		}
-		else{
-			throw new GrupoJaexisteException("O grupo j� existe,por favor ultilize outro c�digo de identifica��o!");
-		}
-	}
-	
-	public void cadastraTarefa(Tarefa tarefa) {
-		this.tarefas.add(tarefa);	
-	}
-	
-	public void cadastrarAlunosEmGrupo(){
-		Tarefa t = new Tarefa("Ministrar curso de Scratch","4346");
-		Grupo g = new Grupo(t,"123");
-		Aluno a = new Aluno("Deyvison","12234576");
-		Aluno a1 = new Aluno("Tayna","53344545");
-		g.cadastrarParticipante(a);
-		g.cadastrarParticipante(a1);
-	}
-	
     //PARTE DE ADICIONAR
 	public void adicionarTarefaAoGrupo(Tarefa t, Grupo g){
 		g.addTarefa(t);
@@ -90,14 +59,6 @@ public class GerenciadorPibid{
 		return this.alunos;
 	}
 	
-	public List<Tarefa> getListaDeTarefas() {
-		return this.tarefas;
-	}
-	
-	public List<Grupo> getListaDeGrupos(){
-		return this.grupos;
-	}
-
 	public List<Tarefa> getListaDeTarefasCadastradasEmUmGrupo(Grupo g1) {
 		return g1.listTarefas();
 	
@@ -105,14 +66,6 @@ public class GerenciadorPibid{
 	}
 	
 	//PARTE DE PESQUISAS
-	public Grupo pesquisarGrupo(String codigo){
-		for(Grupo i: this.grupos){
-			if(i.getCodigoGrupo().equals(codigo)){
-				return i;
-			}
-		}
-		return null;
-	}
 	
 	public Aluno pesquisaAluno(String matricula){
 		
@@ -152,16 +105,7 @@ public class GerenciadorPibid{
 		}
 		throw new CoordenadorInexistenteException ("Coordenador Inexistente!");
 	}
-    
-	public Tarefa pesquisarTarefa(String codTarefa){
-		for (Tarefa x : this.tarefas) {
-			if (x.getcodDaTarefa().equals(codTarefa)) {
-				return x;
-			}
-		}
-		return null;
-	}
-	
+    	
 	//PARTE DE REMO��O
 	public void removerAlunoPelaMatricula(String matricula) {
 		
@@ -197,39 +141,5 @@ public class GerenciadorPibid{
 		if(removeu == false){
 			throw new CoordenadorInexistenteException("Imposs�vel remover, pois n�o existe!");
 		}
-	}
-	
-	public void removerTarefaDoGrupo(String codTarefa, String codGrupo){
-		for(Grupo x: this.grupos){
-			if(x.getCodigoGrupo().equals(codGrupo)){
-				for(Tarefa y: x.listTarefas()){
-					if(y.getcodDaTarefa().equalsIgnoreCase(codTarefa)){
-						x.listTarefas().remove(y);
-						
-					}
-				}
-			}
-		}	
-		
-	}
-	
-	public void removerTarefa(String cod) {
-		boolean removeu = false;
-		for(Tarefa t : this.tarefas){
-			if(t.getcodDaTarefa().equals(cod)){
-				this.tarefas.remove(t);
-				removeu = true;
-				break;
-			}
-		}
-		if(!removeu){
-			throw new RuntimeException("ERRO!");
-		}
-		
-	}
-	public void removerTarefaDoGrupo(Tarefa t, Grupo g){
-		g.removerTarefa(t);
-		
-	}
-		
+	}		
 }

@@ -75,10 +75,6 @@ public class GerenciadorDeMaterial {
 		}
 	}
 	
-	public void alterarNomeDeMaterial (Material m,String nome){
-		m.setNome(nome);
-	}
-	
 	public Material pesquisarMaterialPeloNome (String nome){
 		for(Material m: this.materiais){
 				if(m.getNome().equals(nome)){
