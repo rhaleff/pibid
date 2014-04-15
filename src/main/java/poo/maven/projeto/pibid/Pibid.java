@@ -21,6 +21,10 @@ public class Pibid {
 	public void cadastrarAluno(Aluno aluno){
 		this.gerenciador.cadastraAluno(aluno);
 	}
+	public List<Aluno> getParticipantes(String cod){
+		Grupo g= this.gerenciadorGrupo.pesquisarGrupo(cod);
+		return g.listParticipantes();
+	}
 	
 	public void cadastraCoordenador(Coordenador coord){
 		this.gerenciador.cadastraCoordenador(coord);	
