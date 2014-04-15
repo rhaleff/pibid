@@ -40,15 +40,15 @@ public class PibidTest {
 	
 	@Test(expected = AlunoExistenteException.class)
 	public void cadastrarAlunoDuplicadoTest(){
-		Aluno aluno1= new Aluno("Luana Tain�","81211021");
-		Aluno aluno2= new Aluno("Luana Tain�","81211021");
+		Aluno aluno1= new Aluno("Luana Tainá","81211021");
+		Aluno aluno2= new Aluno("Luana Tainá","81211021");
 		pibid.cadastrarAluno(aluno1);
 		pibid.cadastrarAluno(aluno2);
 	}
 	
 	@Test(expected = AlunoExistenteException.class)
 	public void cadastraAlunoComMesmaMatriculaTest(){
-		Aluno aluno1= new Aluno("Luana Tain�","81211369");
+		Aluno aluno1= new Aluno("Luana Tainá","81211369");
 		Aluno aluno2= new Aluno("Marina Oliveira","81211369");
 		pibid.cadastrarAluno(aluno1);
 		pibid.cadastrarAluno(aluno2);
@@ -308,6 +308,14 @@ public class PibidTest {
 		assertEquals(e, escolas.get(0));
 	}
 	
+	@Test(expected = EscolaExistenteException.class)
+	public void cadastrarEscolaDuplicadaTest(){
+		Escola e= new Escola("E.E.E.F.M. Luis Gonzaga Burity","Rio Tinto","01235");
+		Escola e2= new Escola("E.E.E.F.M. Luis Gonzaga Burity","Rio Tinto","01235");
+		pibid.cadastrarEscola(e);
+		pibid.cadastrarEscola(e2);
+	}
+	
 	@Test
 	public void removerEscolaPeloCodTest(){
 		Escola e= new Escola("E.E.E.F.M. Luis Gonzaga Burity","Rio Tinto","01235");
@@ -322,6 +330,11 @@ public class PibidTest {
 		Escola e= new Escola("E.E.E.F.M. Luis Gonzaga Burity","Rio Tinto","01235");
 		pibid.cadastrarEscola(e);
 		assertEquals(e,pibid.pesquisarEscolaPeloNome("E.E.E.F.M. Luis Gonzaga Burity"));
+	}
+	
+	@Test(expected = EscolaInexistenteException.class)
+	public void removerEscolaInexistenteTest(){
+		pibid.removerEscolaPeloCod("123");
 	}
 	
 	@Test

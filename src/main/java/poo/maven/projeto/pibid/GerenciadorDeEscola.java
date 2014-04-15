@@ -39,7 +39,7 @@ public class GerenciadorDeEscola {
 	}
 	
 	public Escola pesquisarEscolaPeloCod(String cod){
-		for(Escola e:this.escolas){
+		for(Escola e: this.escolas){
 			if(e.getCodDoMec().equalsIgnoreCase(cod)){
 				return e;
 			}
