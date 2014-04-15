@@ -297,8 +297,6 @@ public class PibidTest {
 		pibid.removerCoordenadorPeloSiape("81241432");
 	}
 	
-	
-
 	@Test
 	public void cadatraEscolaTest(){
 		Escola e= new Escola("E.E.E.F.M. Luis Gonzaga Burity","Rio Tinto","01235");
@@ -325,6 +323,11 @@ public class PibidTest {
 		assertEquals(0,escolas.size());
 	}
 	
+	@Test(expected = EscolaInexistenteException.class)
+	public void removerEscolaInexistenteTest(){
+		pibid.removerEscolaPeloCod("123");
+	}
+	
 	@Test
 	public void pesquisarEscolaPeloNomeTest(){
 		Escola e= new Escola("E.E.E.F.M. Luis Gonzaga Burity","Rio Tinto","01235");
@@ -333,8 +336,10 @@ public class PibidTest {
 	}
 	
 	@Test(expected = EscolaInexistenteException.class)
-	public void removerEscolaInexistenteTest(){
-		pibid.removerEscolaPeloCod("123");
+	public void pesquisarEscolaInexistenteTest(){
+		Escola e= new Escola("E.E.E.F.M. Luis Gonzaga Burity","Rio Tinto","01235");
+		pibid.cadastrarEscola(e);
+		pibid.pesquisarEscolaPeloCod("32235");
 	}
 	
 	@Test
