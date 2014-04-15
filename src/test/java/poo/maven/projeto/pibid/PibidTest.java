@@ -72,6 +72,7 @@ public class PibidTest {
 		Aluno a1 = pibid.pesquisaAluno("66557788");
 		Tarefa t = new Tarefa("Planejar aula","32");
 		Grupo g = new Grupo(t,"123");
+		pibid.cadastrarGrupo(g);
 		pibid.cadastrarParticipante(a1,g);
 		pibid.cadastrarParticipante(a1,g);
 	}
