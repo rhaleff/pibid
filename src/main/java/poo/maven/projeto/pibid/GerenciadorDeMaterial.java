@@ -40,4 +40,15 @@ public class GerenciadorDeMaterial {
 		}
 		throw new MaterialInexistenteException ("Material Inexistente!");
 	}
+	
+	public void atualizarMaterial(Material m1){
+		for(Material m : this.materiais){
+			if(m.getCodMaterial().equals(m1.getCodMaterial())){
+				m.setNome(m1.getNome());
+				m.setQuantidade(m1.getQuantidade());
+				return;
+			}
+		}
+		throw new MaterialInexistenteException("Material não encontrado");
+	}
 }

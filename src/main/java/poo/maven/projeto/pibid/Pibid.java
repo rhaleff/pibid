@@ -138,6 +138,10 @@ public class Pibid {
 	public void removerCoordenadorPeloSiape(String siape){
 		this.gerenciador.removerCoordenadorPeloSiape(siape);
 	}
+	public void atualizarMaterial(Material m){
+		this.gerenciadorMaterial.atualizarMaterial(m);
+		
+	}
 	public void removerTarefa(String cod) {
 		this.gerenciadorTarefas.removerTarefa(cod);
 	}

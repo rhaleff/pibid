@@ -402,4 +402,14 @@ public class PibidTest {
 		pibid.cadastrarMaterial(m);
 		pibid.pesquisarMaterial("0102");
 	}
-}
+	
+	@Test
+	public void alteraçãoDeMaterialTest(){
+		Material m = new Material ("Canetas","12334",2);
+		pibid.cadastrarMaterial(m);
+		m.setNome("Caderno");
+		m.setQuantidade(5);
+		pibid.atualizarMaterial(m);
+		assertEquals(m, pibid.getMaterial("12334"));
+	}
+	}
