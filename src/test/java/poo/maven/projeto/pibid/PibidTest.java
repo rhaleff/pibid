@@ -404,7 +404,7 @@ public class PibidTest {
 	}
 	
 	@Test
-	public void alteraçãoDeMaterialTest(){
+	public void alteracaoDeMaterialTest(){
 		Material m = new Material ("Canetas","12334",2);
 		pibid.cadastrarMaterial(m);
 		m.setNome("Caderno");
