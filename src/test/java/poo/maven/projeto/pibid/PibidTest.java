@@ -412,4 +412,4 @@ public class PibidTest {
 		pibid.atualizarMaterial(m);
 		assertEquals(m, pibid.getMaterial("12334"));
 	}
-	}
+}
